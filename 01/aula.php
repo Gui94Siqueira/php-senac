@@ -37,5 +37,17 @@
     echo 'Dom Pedro disse: "Independencia ou Morte!"<br>';
 
     echo "$nome tem $idade anos de idade <br>";
-    echo '$nome tem $idade anos de idade';
+    echo '$nome tem $idade anos de idade <br>';
+
+    // Testando do case sensitive - Palavras reservadas
+    echo "Texto 1 <br>";
+    ECHO "Texto 2 <br>";
+
+    // Testando case sensitive - Variáveis
+    $primeiroNome = "Carlos";
+
+    echo $primeiroNome;
+    ECHO $PRIMEIRONOME;
+
+    
 ?>
