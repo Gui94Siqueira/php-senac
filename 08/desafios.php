@@ -13,7 +13,7 @@ $C = 7;
 
     $soma = $A + $B;
     if($soma == $C) {
-        echo "parabens a soma dos numeros está correta <br>";
+        echo "parabens a soma dos numeros $A e $B é igual a $C <br>";
     } else {
         echo "a soma dos numeros não esta correta <br>";
     }
@@ -31,8 +31,9 @@ for($i = 0; $i <= $numero; $i++) {
     $resultado = $i * $i;
     
 }
-echo "$resultado";
-
+echo "<hr>";
+echo "o quadrado de $numero é $resultado";
+echo "<hr>";
 // Desafio 3: Verificar se um número é par ou ímpar
 /*
     Solicita ao usuário um número inteiro e verifica se ele é par ou ímpar.
@@ -41,7 +42,6 @@ $numero = 20;
 
 // Implementação da Verificação de Paridade
 $eh_par = $numero % 2;
-echo "<br>";
     if($eh_par !== 1) {
         echo "O numero é par";
     } else {
