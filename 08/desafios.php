@@ -136,27 +136,17 @@ echo "<hr>";
 echo "Desenho piramide <br>";
 $numero = 5;
 // Implementação de Desenho de Pirâmide
-for($i = 0; $i <= $numero; $i++){
-    linhas($i);
-    espacos($i);
-    espacos($i);
-    linhas($i);  
+for($i = 0; $i <= $numero; $i++) {
+    echo str_repeat("-", $numero - $i) . str_repeat("*  ", $i) ."<br>";
+}
+
+# ou
+for($i = 1; $i <= $numero; $i++) {
+    for($j = 1; $j <= $i; $j++) {
+        echo "* ";
+    }
     echo "<br>";
 }
-
-
-function linhas($numero) {
-    for($i = 5; $numero <= $i; $i--) {
-        echo "- ";
-    }
-   }
-
-function espacos($numero) {
-    for($i = 1; $i <= $numero; $i++) {
-        echo "*";
-    }
-}
-
 
 
 //// Exercício 6: Contagem de Dígitos em um Número
@@ -180,9 +170,9 @@ $palavra = "Ana";
 $palavra_convertida = strtolower($palavra);
 // Implementação de Verificação de Palíndromo
 if(strrev($palavra_convertida) == $palavra_convertida) {
-    echo "A palavra $palavra é um palindromo";
+    echo "A palavra $palavra é um palindromo <br>";
 } else {
-    echo "A palavra $palavra não é um palindromo";
+    echo "A palavra $palavra não é um palindromo  <br>";
 }
 
 
@@ -196,11 +186,11 @@ if(strrev($palavra_convertida) == $palavra_convertida) {
 $numero1 = 20;
 $numero2 = 15;
 $numero3 = 10;
-$numeros_array = [$numero1, $numero2, $numero3];
-$array_revertido = array_reverse($numeros_array);
-echo "Os numeros $numero1, $numero2 e $numero3 revertidos é : <br>";
-foreach($array_revertido as $numeros) {
-    echo $numeros . " <br>";
+$numeros = [$numero1, $numero2, $numero3];
+sort($numeros);
+echo "Os numeros $numero1, $numero2 e $numero3 em ordem crescente é : <br>";
+foreach($numeros as $numero) {
+    echo $numero . " ";
 }
 
 echo "<hr>";
@@ -212,8 +202,19 @@ echo "<hr>";
 */
 $numero = 2024;
 // Implementação de Soma de Dígitos
-echo "A soma dos digitos do numero $numero é: " . strlen($numero);
+$numero_string = (string)$numero;
+$numero_split = str_split($numero_string);
+$digito = 0;
 
+for($i = 0; $i <= 3; $i++) {
+    $digito = $numero_split[$i] + $digito;
+}
+# ou
+
+$somaDosDigitos = array_sum($numero_split);
+
+echo "A soma dos digitos do numero $numero_string é: " . $digito . "<br>";
+echo "Resultado usando Função array_sum(), $somaDosDigitos <br>";
 
 
 //// Exercício 10: Geração de Sequência Numérica
