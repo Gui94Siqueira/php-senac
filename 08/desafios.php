@@ -25,12 +25,9 @@ $C = 7;
     Solicita ao usuário um número inteiro e calcula o quadrado desse número.
 */
 $numero = 8;
-$resultado = 0;
+$resultado = $numero * $numero;
 // Implementação do Cálculo do Quadrado
-for($i = 0; $i <= $numero; $i++) {
-    $resultado = $i * $i;
-    
-}
+
 echo "<hr>";
 echo "o quadrado de $numero é $resultado";
 echo "<hr>";
@@ -42,10 +39,10 @@ $numero = 20;
 
 // Implementação da Verificação de Paridade
 $eh_par = $numero % 2;
-    if($eh_par !== 1) {
-        echo "O numero é par";
+    if($eh_par === 0) {
+        echo "O $numero é par";
     } else {
-        echo "O numero é impar";
+        echo "O $numero é impar";
     }
 
 // Desafio 4: Calcular a média de três números
@@ -53,14 +50,14 @@ $eh_par = $numero % 2;
     Solicita ao usuário três números e calcula a média aritmética entre eles.
 */
 echo "<hr>";
-$N1 = 8;
-$N2 = 6;
-$N3 = 9;
+$N1 = 10;
+$N2 = 15;
+$N3 = 20;
 
 // Implementação do Cálculo da Média
 $media = ($N1 + $N2 + $N3) / 3;
 
-echo round($media);
+echo "a media de $N1, $N2 e $N3 é: " . round($media) . "<br>";
 
 // Desafio 5: Verificar se um número é múltiplo de outro
 /*
@@ -71,13 +68,19 @@ $numero2 = 8;
 $numero1_tabuada = [];
 echo "<hr>";
 // Implementação da Verificação de Múltiplo
+if($numero % $numero == 0) {
+    echo "$numero1 é multiplo de $numero2 <br>";
+} else {
+    echo "$numero1 Não é multiplo de $numero2 <br>";
+}
+/*
 for($i = 0; $i <= 10; $i++) {
     $numero1_tabuada[$i] = $numero1 * $i;
     if($numero1_tabuada[$i] == $numero2) {
         echo "Numero $numero1 é multiplo de $numero1_tabuada[$i] <br>";
     } 
 }
-
+*/
 
 
 //// Exercício 2: Números Primos em um Intervalo
@@ -94,12 +97,14 @@ function ehprimo($numero) {
         return false;
     }
     for($i = 2; $i <= sqrt($numero); $i++) {
-    if($numero % $i === 0) {
-        return false;
-    }
+        if($numero % $i === 0) {
+            return false;
+        }
     }
     return true;
 }
+
+echo "Números primos no intervalo de $n até o $m <br>";
 
 for($n; $n <= $m; $n++) {
     if(ehprimo($n)) {
@@ -131,7 +136,7 @@ echo "<hr>";
 echo "Desenho piramide <br>";
 $numero = 5;
 // Implementação de Desenho de Pirâmide
-for($i = 1; $i <= $numero; $i++){
+for($i = 0; $i <= $numero; $i++){
     linhas($i);
     espacos($i);
     espacos($i);
@@ -142,7 +147,7 @@ for($i = 1; $i <= $numero; $i++){
 
 function linhas($numero) {
     for($i = 5; $numero <= $i; $i--) {
-        echo "/ ";
+        echo "- ";
     }
    }
 
@@ -159,18 +164,26 @@ function espacos($numero) {
     Solicita ao usuário um número inteiro positivo e conta quantos dígitos esse número possui.
 */
 
+
 // Implementação de Contagem de Dígitos em um Número
+$numero = 2048;
 
-
+echo "O número de digitos em $numero é: " . strlen($numero) . "<br>";
 
 
 //// Exercício 7: Verificação de Palíndromo
 /*
     Solicita ao usuário uma palavra e verifica se ela é um palíndromo.
 */
-
+echo "<hr>";
+$palavra = "Ana";
+$palavra_convertida = strtolower($palavra);
 // Implementação de Verificação de Palíndromo
-
+if(strrev($palavra_convertida) == $palavra_convertida) {
+    echo "A palavra $palavra é um palindromo";
+} else {
+    echo "A palavra $palavra não é um palindromo";
+}
 
 
 
@@ -180,18 +193,26 @@ function espacos($numero) {
 */
 
 // Implementação de Ordenação de Números
+$numero1 = 20;
+$numero2 = 15;
+$numero3 = 10;
+$numeros_array = [$numero1, $numero2, $numero3];
+$array_revertido = array_reverse($numeros_array);
+echo "Os numeros $numero1, $numero2 e $numero3 revertidos é : <br>";
+foreach($array_revertido as $numeros) {
+    echo $numeros . " <br>";
+}
 
-
-
+echo "<hr>";
 
 
 //// Exercício 9: Soma de Dígitos
 /*
     Solicita ao usuário um número inteiro positivo e calcula a soma de todos os seus dígitos.
 */
-
+$numero = 2024;
 // Implementação de Soma de Dígitos
-
+echo "A soma dos digitos do numero $numero é: " . strlen($numero);
 
 
 
