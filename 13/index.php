@@ -1,12 +1,24 @@
 <?php
     class Cliente {
-        public $nome;
-        protected  $cpf;
+        private $nome;
+        private $cpf;
 
         public function __construct($nome, $cpf)
         {
             $this->nome = $nome;
             $this->cpf = $cpf;
+        }
+
+        public function setNome($nome) {
+            if(strlen($nome) > 3) {
+                $this->nome = $nome;
+            } else {
+                return "O $nome não corresponde as especificações";
+            }
+        }
+
+        public function getNome() {
+            return $this->nome;
         }
     }
 
@@ -45,7 +57,7 @@
         }
 
         public function exibirDados() {
-             return "Numero {$this->numero} - Saldo: {$this->saldo} - Cliente: {$this->cliente->nome}";
+             return "Numero {$this->numero} - Saldo: {$this->saldo} - Cliente: {$this->cliente->getNome()}";
         }
     }
 
