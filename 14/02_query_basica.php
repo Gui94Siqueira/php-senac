@@ -16,6 +16,13 @@
      // exibe os resultados em tela 
      print_r($result);
 
+     // vendo os dados
+     while($row = $result->fetch_assoc()) {
+        echo "<br>Id: " . $row["Id"] . "<br>";
+        echo "Nome: " . $row["nome"] . "<br>";
+        echo "email: " . $row["email"] . "<hr>";
+     }
+
      // Fecha a conexão
      $connection->close();
 

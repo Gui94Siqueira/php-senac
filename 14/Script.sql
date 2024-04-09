@@ -22,3 +22,6 @@ FLUSH PRIVILEGES;
 -- iNSERINDO DADOS NO BANCO 
 INSERT INTO contatos_info (nome, telefone, email) VALUES
 	('João', '123456789', 'joao@mail.com');
+	
+INSERT INTO contatos_info (nome, telefone, email) VALUES
+	('Guilherme', '123456712', 'guilherme@mail.com');
