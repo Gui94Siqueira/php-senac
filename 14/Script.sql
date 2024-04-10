@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS contatos_info (
 );
 
 -- CRIANDO UM USUÁRIO PARA ACESSAR O BANCO DE DADOS
-CREATE USER 'usuario_contatos'@'localhost' IDENTIFIED BY 'senha123';
+CREATE USER 'usuario_contatos'@'localhost' IDENTIFIED BY 'Senha@123';
 
 -- Concedendo permissões para o usuário no banco contatos
 GRANT ALL PRIVILEGES ON contatos.* to 'usuario_contatos'@'localhost';
@@ -25,3 +25,8 @@ INSERT INTO contatos_info (nome, telefone, email) VALUES
 	
 INSERT INTO contatos_info (nome, telefone, email) VALUES
 	('Guilherme', '123456712', 'guilherme@mail.com');
+
+INSERT INTO contatos_info (nome, telefone, email) VALUES
+	('Maria', '987654321', 'maria@mail.com'),
+	('Carlos', '999999999', 'carlos@mail.com'),
+	('Ana', '888888888', 'ana@mail.com');
