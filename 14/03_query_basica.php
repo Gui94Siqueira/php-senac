@@ -35,5 +35,8 @@
         echo "Nenhum registro encontrado";
     }
 
+    // Fechando a conexão com o banco de dados
+    $connection->close();
+
 
 ?>
