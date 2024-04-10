@@ -29,6 +29,7 @@
             echo "ID: " . $row["Id"] . "<br>";
             echo "Nome: " . $row["nome"] . "<br>";
             echo "Email: " . $row["email"] . "<br>";
+            echo "Telefone: " . $row["telefone"] . "<br>";
             echo "<hr>";
         }
     } else {
