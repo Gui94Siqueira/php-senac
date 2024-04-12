@@ -10,7 +10,7 @@
         die("Erro de conexão: " . $connection->connect_error);
     }
 
-    $produto = "Feijão";
+    $produto = "Coca-Cola";
     $quantidade = 2;
 
     
