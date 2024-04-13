@@ -38,12 +38,31 @@ class DatabaseRepository {
         return $success;
     }
 
-    public function updateItem($id, $nome_produto, $quantidade) {
-        
+    public function updateItem($id, $nome_produto, $quantidade, $comprado) {
+        $sql = "UPDATE itens_compra SET nome_produto = ?, quantidade = ?, comprado=? WHERE id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("siii", $nome_produto, $quantidade, $comprado, $id);
+        $success = $stmt->execute();
+        $stmt->close();
+        return $success;
     }
 
-    public function deleteItem() {
+    public function compraItem($id, $comprado) {
+        $sql = "UPDATE itens_compra SET comprado=? WHERE id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("ii", $comprado, $id);
+        $success = $stmt->execute();
+        $stmt->close();
+        return $success;
+    }
 
+    public function deleteItem($id) {
+        $sql = "DELETE FROM itens_compra WHERE id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $success = $stmt->execute();
+        $stmt->close();
+        return $success;
     }
 
     public function __destruct() {
