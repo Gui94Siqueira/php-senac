@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastra Contato</title>
+</head>
+<body>
+    <h1>Cadastro de Contato</h1>
+    <form id="contactForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const email = document.getElementById('email').value;
+
+            fetch('api.php?action=add', {
+                method: 'POST',
+                body: JSON.stringify({nome, telefone, email}),
+                headers: {
+                    'Content-Type':'application/json'
+                }
+            })
+            .then(respose => respose.json())
+            .then(data => {
+                if(data.succes) {
+                    window.alert("Cadastrado com sucesso");
+                } else {
+                    window.alert("Falha no cadastro do usuario");
+                }
+            })
+            .catch(error => console.error('Erro ao cadastrar contato:', error));
+
+        });
+    </script>
+</body>
+</html>
