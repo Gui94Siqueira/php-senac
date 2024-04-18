@@ -1,7 +1,7 @@
 <?php
 require_once 'DatabaseRepository.php';
 
-$action = $_GET['action'];
+$action = $_GET['escolha'];
 
 switch($action) {
     case 'list':

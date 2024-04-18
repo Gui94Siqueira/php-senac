@@ -6,18 +6,17 @@
             $connection = DatabaseRepository::connect();
             $result = $connection->query("SELECT * FROM conta");
 
-            $conta = [];
+            $contas = [];
             if($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    $conta[] = $row;
+                    $contas[] = $row;
                 }
             }
 
             $connection->close();
-            return $conta;
+            return $contas;
         }
     }
 
-    print_r(ContaRepository::getAllContas());
 
 ?>

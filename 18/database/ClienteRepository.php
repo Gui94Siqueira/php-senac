@@ -1,5 +1,5 @@
 <?php
-    require_once 'DatabaseRepository';
+    require_once 'DatabaseRepository.php';
 
     class ClienteRepository {
         public static function getAllClientes() {
@@ -17,4 +17,5 @@
             return $cliente;
         }
     }
+
 ?>
