@@ -9,7 +9,5 @@
             return new mysqli(self::$server, self::$username, self::$password, self::$database);
         }
 
-        
     }
-
 ?>
