@@ -18,7 +18,7 @@ SELECT
     conta.saldo AS conta_saldo,
     conta.tipo AS conta_tipo,
     conta.limite_cheque_especial AS conta_limite_cheque_especial,
-    conta.taxa_rendimento AS conta_taxa_rendimento,
+    conta.taxa_rendimento AS conta_taxa_rendimento,◄
     cliente.id AS cliente_id,
     cliente.nome AS cliente_nome,
     cliente.cpf AS cliente_cpf
