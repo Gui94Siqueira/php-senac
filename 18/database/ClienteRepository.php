@@ -20,19 +20,19 @@
         public static function getClienteById($id) {
             $connection = DatabaseRepository::connect();
             $sql = "SELECT * FROM cliente WHERE id = $id";
-            $result = $connection-query($sql);
+            $result = $connection->query($sql);
 
-            $cliente = null
+            $cliente = null;
             if($result->num_rows > 0) {
-                $cliente = result->fetch_assoc()
+                $cliente = $result->fetch_assoc();
             }
             
-            $connection-close();
-            return cliente;
+            $connection->close();
+            return $cliente;
         }
 
-        public static function insertCliente($nome, $cpf) {
-            $connection = DatabaseRepositori::connect();
+        public static function inserirCliente($nome, $cpf) {
+            $connection = DatabaseRepository::connect();
             $sql = "INSERT INTO cliente (nome, cpf) VALUES ('$nome', '$cpf')";
             $success = $connection->query($sql);
             $connection->close();
@@ -49,7 +49,7 @@
 
         public static function deleteCliente($id) {
             $connection = DatabaseRepository::connect();
-            success = $connection->("DELETE FROM cliente WHERE id=$id");
+            $success = $connection->query("DELETE FROM cliente WHERE id=$id");
             $connection->close();
             return $success; 
         }

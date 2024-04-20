@@ -25,35 +25,70 @@
     }
 
     function listarClientes() {
-        $cliente = ClienteRepository::getAllClietes():
+        $cliente = ClienteRepository::getAllClientes();
         echo json_encode($cliente);
     }
 
-    function buscarClientePorId($id) {
-        $cliente = ClienteRepository::getClienteById($id);
-        echo json_encode($cliente);
+    function buscarClientePorId() {
+        if($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $id = $_GET['id'];
+            $cliente = ClienteRepository::getClienteById($id);
+
+            if($cliente) {
+                echo json_encode($cliente);
+            } else {
+                http_response_code(404); // Cliente não encontrado
+                echo json_encode(['error' => 'Cliente Não Encontrado']);
+            }
+        } else {
+            http_response_code(405); // Método não permitido
+        }
+        
     }
 
     function cadastrasCliente() {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents("php://input"));
+            $nome = $data->nome;
+            $cpf = $data->cpf;
 
-    }
-
-    function inserirCliente() {
-
+            $success = ClienteRepository::inserirCliente($nome, $cpf);
+            echo json_encode(['success' => $success]);
+        } else {
+            http_response_code(405);
+        }
     }
 
     function atualizarCliente() {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents("php://input"));
+            $id = $data->id;
+            $nome = $data->nome;
+            $cpf = $data->cpf;
 
+            $success = ClienteRepository::updateCliente($id, $nome, $cpf);
+            echo json_encode(['success' => $success]);
+        } else {
+            http_response_code(405);
+        }
     }
 
-    function excluirCliente($id) {
+    function excluirCliente() {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents("php://input"));
+            $id = $data->id;
 
+            $success = ClienteRepository::deleteCliente($id);
+            echo json_encode(['success' => $success]);
+        } else {
+            http_response_code(405);
+        }
     }
 
-    // CREATE Read update delete
+    // Create Read update delete
     // Create = POST(INSERT)
     // Read = GET(SELECT)
-    // UPDATE = 
-    // DELETE = 
+    // UPDATE = POST(UPDATE)
+    // DELETE = POST(DELETE)
 
 ?>
