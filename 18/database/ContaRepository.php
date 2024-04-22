@@ -17,7 +17,7 @@
             return $contas;
         }
 
-        public static function getContaById($cliente_id) {
+        public static function getContaById($id) {
             $connection = DatabaseRepository::connect();
             $sql = "SELECT * FROM conta WHERE id=$id";
             $result = $connection->query($sql);
@@ -31,9 +31,28 @@
             return $contas;
         }
 
-        public static function inserirConta($clienteId, $numero, $saldo, $tipo, $limite_cheque_especial,$taxa_rendimento) {
+        public static function inserirConta($cliente_id, $numero, $saldo, $tipo, $limite_cheque_especial,$taxa_rendimento) {
             $connection = DatabaseRepository::connect();
-            $sql = "INSERT INTO conta (cliente_id, numero, saldo, tipo, limite_cheque_especial, taxa_rendimento) VALUES ($clienteId, $numero, $saldo, $tipo, $limite_cheque_especial, $taxa_rendimento)";
+            $sql = "INSERT conta (cliente_id, numero, saldo, tipo, limite_cheque_especial, taxa_rendimento) VALUES ('$cliente_id', '$numero', '$saldo', '$tipo', '$limite_cheque_especial', '$taxa_rendimento')";
+            $success = $connection->query($sql);
+            $connection->close();
+            return $sql;
+        }
+
+        public static function updateConta($id, $cliente_id, $numero, $saldo, $tipo, $limite_cheque_especial, $taxa_rendimento) {
+            $connection = DatabaseRepository::connect();
+            $sql = "UPDATE conta SET cliente_id='$cliente_id', numero='$numero', saldo='$saldo', tipo='$tipo', limite_cheque_especial='$limite_cheque_especial', taxa_rendimento='$taxa_rendimento' WHERE id='$id'";
+            $success = $connection->query($sql);
+            $connection->close();
+            return $success;
+        }
+
+        public static function deleteConta($id) {
+            $connection = DatabaseRepository::connect();
+            $sql = "DELETE FROM conta WHERE id=$id";
+            $success = $connection->query($sql);
+            $connection->close();
+            return $success;
         }
     }
     
