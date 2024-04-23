@@ -1,0 +1,30 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    background-color: aliceblue;
+}
+
+.container {
+    padding: 20px 40px;
+    /*border: 1px solid #000;*/
+    border-radius: 20px;
+    box-shadow: 5px 10px 10px 4px #00000048;
+    background-color: white;
+}
+
+.container h1 {
+    text-align: center;
+}
+ul {
+    list-style-type: none;
+    
+}
+
+li {
+    column-count: 1;
+    column-gap: 40px;
+}

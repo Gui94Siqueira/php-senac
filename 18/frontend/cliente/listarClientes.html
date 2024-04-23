@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Clientes</h1>
+        <ul id="listandoClientes"></ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const listandoClientes = document.getElementById('listandoClientes');
+
+            function buscarClientes() {
+                return fetch('http://localhost/php-senac/18/api/cliente_api.php?action=list')
+                    .then(response => response.json())
+            }
+
+
+            function listarClientes() {
+                buscarClientes().then(clientes => {
+                    listandoClientes.innerHTML = ''
+                    clientes.forEach(cliente => {
+                        const li = document.createElement('li')
+                        li.textContent = `Nome: ${cliente.nome}, CPF: ${cliente.cpf}`
+                        listandoClientes.appendChild(li)
+                    });
+                })
+            }
+
+            listarClientes();
+        })
+    </script>
+</body>
+</html>
