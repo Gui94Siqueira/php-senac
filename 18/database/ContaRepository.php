@@ -39,9 +39,9 @@
             return $sql;
         }
 
-        public static function updateConta($id, $cliente_id, $numero, $saldo, $tipo, $limite_cheque_especial, $taxa_rendimento) {
+        public static function updateConta($id, $saldo, $limite_cheque_especial, $taxa_rendimento) {
             $connection = DatabaseRepository::connect();
-            $sql = "UPDATE conta SET cliente_id='$cliente_id', numero='$numero', saldo='$saldo', tipo='$tipo', limite_cheque_especial='$limite_cheque_especial', taxa_rendimento='$taxa_rendimento' WHERE id='$id'";
+            $sql = "UPDATE conta SET saldo='$saldo', limite_cheque_especial='$limite_cheque_especial', taxa_rendimento='$taxa_rendimento' WHERE id='$id'";
             $success = $connection->query($sql);
             $connection->close();
             return $success;
