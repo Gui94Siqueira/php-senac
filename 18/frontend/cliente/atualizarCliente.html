@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Cliente</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             min-height: 100vh;
@@ -51,39 +52,51 @@
     </style>
 </head>
 <body>
-    <h1>Cadastrar de Cliente</h1>
-    <form id="contactForm">
+    <h1>Atualizar Cliente</h1>
+    <form id="updateForm">
+        <label for="id">ID do Contato:</label>
+        <input type="number" id="id" name="id" required><br><br>
+
         <label for="nome">Nome: </label>
         <input type="text" id="nome" name="nome" required><br><br>
 
-        <label for="cpf">CPF: </label>
+        <label for="cpf">CPF :</label>
         <input type="text" id="cpf" name="cpf" required><br><br>
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Atualizar</button>
     </form>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            const nome = document.getElementById('nome').value;
-            const cpf = document.getElementById('cpf').value;
+        // Get By ID
+        document.getElementById('id').addEventListener('change', function() {
+            const id = document.getElementById('id').value;
 
-            fetch('http://localhost/php-senac/18/api/cliente_api.php?action=cadastrar', {
+            fetch(`http://localhost/php-senac/18/api/cliente_api.php?action=buscar&id=${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    if(data.error) {
+                        window.alert(data.error);
+                    } else {
+                        document.getElementById('nome').value = data.nome;
+                        document.getElementById('cpf').value = data.cpf;
+                    }
+                })
+        })
+
+        // Atualiza os dados
+        document.getElementById("updateForm").addEventListener('submit', function(event){
+
+            const id = document.getElementById('id').value;
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('cpf').value;
+
+            fetch('http://localhost/php-senac/18/api/cliente_api.php?action=update', {
                 method: 'POST',
-                body: JSON.stringify({nome, cpf}),
+                body: JSON.stringify({id, nome, cpf}),
                 headers: {
                     'Content-Type':'application/json'
                 }
-            })
-            .then(respose => respose.json())
-            .then(data => {
-                if(data.success) {
-                    window.alert("Cadastrado com sucesso");
-                } else {
-                    window.alert("Falha no cadastro do usuario");
-                }
-            })
-            .catch(error => console.error('Erro ao cadastrar contato:', error));
-
+            });
         });
     </script>
 </body>
