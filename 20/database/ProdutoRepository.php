@@ -48,13 +48,9 @@
             return $success;
         }
 
-        public function updateProduct(Produto $produto) {
+        public function updateProduct($produto) {
             $connection = DatabaseRepository::connect();
-
-            $id;
-            $nome = $produto->getNome();
-            $descricao = $produto->getDescricao();
-            $preco = $produto->getPreco();
+            
             $sql = "UPDATE produto SET nome='$nome', descricao='$descricao', preco='$preco' WHERE id='$id'";
 
             
