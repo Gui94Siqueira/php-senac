@@ -10,8 +10,8 @@
             $pedidos = [];
             if($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                $pedido = new Pedido($row['id'], $row['data_pedido'], $row['status']);
-                $pedidos[] = $pedido;
+                    $pedido = new Pedido($row['id'], $row['data_pedido'], $row['status']);
+                    $pedidos[] = $pedido;
                 }
             }
 
