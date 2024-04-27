@@ -10,6 +10,18 @@
             $this->status = $status;
         }
 
+        public function getId() {
+            return $this->id;
+        }
+
+        public function getData_pedido() {
+            return $this->data_pedido;
+        }
+
+        public function getStatus() {
+            return $this->status;
+        }
+
         public function jsonSerialize(): array {
             return [
                 'id' => $this->id,
