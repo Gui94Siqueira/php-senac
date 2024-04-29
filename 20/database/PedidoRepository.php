@@ -19,7 +19,7 @@
             return $pedidos;
         }
 
-        public static function getProdutoById($id) {
+        public static function getPedidoById($id) {
             $connection = DatabaseRepository::connect();
             $result = $connection->query("SELECT * FROM pedido WHERE id='$id'");
 
@@ -36,7 +36,7 @@
         public static function insertPedido(Pedido $pedido) {
             $connection = DatabaseRepository::connect();
 
-            $data_pedido = $pedido->getId();
+            $data_pedido = $pedido->getData_pedido();
             $status = $pedido->getStatus();
 
             $sql = "INSERT INTO pedido (data_pedido, status) VALUES ('$data_pedido', '$status')";
@@ -52,14 +52,14 @@
             $data_pedido = $pedido->getData_pedido();
             $status = $pedido->getStatus();
 
-            $sql = "UPDATE pedido SET data_pedido='$data_pedido', status='$status WHERE id='$id'";
+            $sql = "UPDATE pedido SET data_pedido='$data_pedido', status='$status' WHERE id='$id'";
             $success = $connection->query($sql);
 
             $connection->close();
             return $success;
         }
 
-        public static function deleteProduct($id) {
+        public static function deletePedido($id) {
             $connection = DatabaseRepository::connect();
             $success = $connection->query("DELETE FROM pedido WHERE id='$id'");
             $connection->close();

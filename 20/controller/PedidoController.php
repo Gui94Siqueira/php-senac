@@ -37,23 +37,56 @@
         }
 
         public static function buscarpedidoPorId() {
-            if(){
-
+            if($_SERVER['REQUEST_METHOD'] === 'GET') {
+                $id = $_GET['id'];
+                $pedido = PedidoRepository::getPedidoById($id);
+                if ($pedido) {
+                    echo json_encode($pedido);
+                } else {
+                    http_response_code(404);
+                    echo json_encode(['error' => 'Ação inválida']);
+                }
             } else {
-                
+                http_response_code(405);
             }
         }
 
         public static function cadastrarPedido() {
+            if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $data = json_decode(file_get_contents("php://input"));
+                $pedido = new Pedido(null, $data->data_pedido, $data->status);
 
-        }
-
+                $success = PedidoRepository::insertPedido($pedido);
+                echo json_encode(['success' => $success]);
+            } else {
+                http_response_code(405);
+                echo json_encode(['error' => 'Ação inválida']);
+            } 
+        } 
         public static function atualizarPedido() {
+            if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $data = json_decode(file_get_contents("php://input"));
+                $pedido = new Pedido($data->id, $data->data_pedido, $data->status);
 
+                $success = PedidoRepository::updateProduct($pedido);
+                echo json_encode(['success' => $success]);
+            } else {
+                http_response_code(405);
+                echo json_encode(['error' => 'Ação inválida']);
+            }
         }
 
         public static function deletarPedido() {
+            if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $data = json_decode(file_get_contents("php://input"));
+                $id = $data->id;
 
+                $success = PedidoRepository::deletePedido($id);
+                echo json_encode(['success' => $success]);
+            } else {
+                http_response_code(405);
+                echo json_encode(['error' => 'Ação inválida']);
+            }
         }
     }
 
