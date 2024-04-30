@@ -3,11 +3,12 @@
         private $id;
         private $data_pedido;
         private $status;
-
+        private $produtos;
         public function __construct($id, $data_pedido, $status) {
             $this->id = $id;
             $this->data_pedido = $data_pedido;
             $this->status = $status;
+            $this->produtos = [];
         }
 
         public function getId() {
@@ -20,6 +21,10 @@
 
         public function getStatus() {
             return $this->status;
+        }
+
+        public function getPedidoProdutos() {
+            return $this->produtos;
         }
 
         public function jsonSerialize(): array {

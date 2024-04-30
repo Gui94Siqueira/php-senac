@@ -26,7 +26,7 @@
             $pedido = null;
             if($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                $pedido = new Pedido($row['id'], $row['data_pedido'], $row['status']);
+                $pedido = new Pedido($row['id'], $row['data_pedido'], $row['status'], $row['produtos']);
             }
 
             $connection ->close();
