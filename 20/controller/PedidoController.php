@@ -1,5 +1,6 @@
 <?php
     require_once 'database/PedidoRepository.php';
+    require_once 'database/DatabaseRepository.php';
 
     class PedidoController {
         public static function handleRequest($action) {
@@ -63,17 +64,30 @@
                 echo json_encode(['error' => 'Ação inválida']);
             } 
         } 
+        
         public static function atualizarPedido() {
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $data = json_decode(file_get_contents("php://input"));
-                $pedido = new Pedido($data->id, $data->data_pedido, $data->status);
-
-                $success = PedidoRepository::updateProduct($pedido);
-                echo json_encode(['success' => $success]);
+                $id = $data->id;
+                $status = $data->status;
+                $data_pedido = $data->data_pedido;
+    
+                // Existindo um pedido!
+                $pedidoExistente = PedidoRepository::getPedidoById($id);
+                if($pedidoExistente) {
+                    //update das propriedades do pedido
+                    $pedidoExistente->setStatus($status);
+                    $pedidoExistente->setData($data_pedido);
+    
+                    $success = PedidoRepository::updatePedido($pedidoExistente, $id);
+                    echo json_encode(['success' => $success]);
+                } else {
+                    http_response_code(404);
+                    echo json_encode(['error' => 'Pedido não encontrado']);
+                }
             } else {
                 http_response_code(405);
-                echo json_encode(['error' => 'Ação inválida']);
-            }
+            }        
         }
 
         public static function deletarPedido() {
